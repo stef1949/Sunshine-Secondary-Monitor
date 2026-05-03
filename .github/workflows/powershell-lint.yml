@@ -35,20 +35,20 @@ jobs:
             }
           }
 
-- name: Run PSScriptAnalyzer
+      - name: Run PSScriptAnalyzer
         shell: pwsh
         run: |
           $results = @()
-          $results += Invoke-ScriptAnalyzer -Path scripts  -Recurse -Severity Warning,Error
-          $results += Invoke-ScriptAnalyzer -Path examples -Recurse -Severity Warning,Error
+          $results += Invoke-ScriptAnalyzer -Path scripts  -Recurse -Settings PSScriptAnalyzerSettings.psd1 -Severity Warning,Error
+          $results += Invoke-ScriptAnalyzer -Path examples -Recurse -Settings PSScriptAnalyzerSettings.psd1 -Severity Warning,Error
 
           if ($results.Count -gt 0) {
-            $results |
-              Select-Object RuleName, Severity, ScriptPath, ScriptName, Line, Column, Message |
-              Sort-Object ScriptPath, Line, Column |
-              Format-Table -AutoSize |
-              Out-String -Width 300 |
-              Write-Host
-
-            throw "PSScriptAnalyzer reported $($results.Count) issue(s)."
-          }
+           $results |
+             Select-Object RuleName, Severity, ScriptPath, ScriptName, Line, Column, Message |
+             Sort-Object ScriptPath, Line, Column |
+             Format-Table -AutoSize |
+             Out-String -Width 300 |
+             Write-Host
+  
+           throw "PSScriptAnalyzer reported $($results.Count) issue(s)."
+         }
