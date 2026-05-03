@@ -39,7 +39,7 @@ function ConvertTo-FullPath {
     return [System.IO.Path]::GetFullPath($expandedPath)
 }
 
-function Write-Log {
+function Write-SsmLog {
     param(
         [Parameter(Mandatory = $true)]
         [ValidateSet('INFO', 'WARN', 'ERROR')]
@@ -263,7 +263,7 @@ function Invoke-MonitorSwitcher {
     Test-MonitorSwitcherFile -MonitorSwitcherPath $MonitorSwitcherPath
 
     $argument = '-{0}:"{1}"' -f $Action, $ProfilePath
-    Write-Log -Level INFO -LogPath $LogPath -Message ('Running MonitorSwitcher.exe {0} for "{1}".' -f $Action, $ProfilePath)
+    Write-SsmLog -Level INFO -LogPath $LogPath -Message ('Running MonitorSwitcher.exe {0} for "{1}".' -f $Action, $ProfilePath)
 
     $process = Start-Process `
         -FilePath $MonitorSwitcherPath `
@@ -277,7 +277,7 @@ function Invoke-MonitorSwitcher {
         throw ('MonitorSwitcher.exe exited with code {0} while trying to {1} "{2}".' -f $process.ExitCode, $Action, $ProfilePath)
     }
 
-    Write-Log -Level INFO -LogPath $LogPath -Message ('MonitorSwitcher.exe completed {0} for "{1}".' -f $Action, $ProfilePath)
+    Write-SsmLog -Level INFO -LogPath $LogPath -Message ('MonitorSwitcher.exe completed {0} for "{1}".' -f $Action, $ProfilePath)
 }
 
 function Show-Status {
@@ -337,7 +337,7 @@ try {
         StreamProfilePath   = $streamProfilePath
     }
 
-    Write-Log -Level INFO -LogPath $logPath -Message ('Mode "{0}" started. BaseDir="{1}".' -f $Mode, $resolvedBaseDir)
+    Write-SsmLog -Level INFO -LogPath $logPath -Message ('Mode "{0}" started. BaseDir="{1}".' -f $Mode, $resolvedBaseDir)
 
     switch ($Mode) {
         'save-normal' {
@@ -396,13 +396,13 @@ try {
         }
     }
 
-    Write-Log -Level INFO -LogPath $logPath -Message ('Mode "{0}" completed successfully.' -f $Mode)
+    Write-SsmLog -Level INFO -LogPath $logPath -Message ('Mode "{0}" completed successfully.' -f $Mode)
 }
 catch {
     $message = $_.Exception.Message
 
     if (-not [string]::IsNullOrWhiteSpace($logPath)) {
-        Write-Log -Level ERROR -LogPath $logPath -Message ('Mode "{0}" failed: {1}' -f $Mode, $message)
+        Write-SsmLog -Level ERROR -LogPath $logPath -Message ('Mode "{0}" failed: {1}' -f $Mode, $message)
     }
 
     [Console]::Error.WriteLine(('ERROR: {0}' -f $message))
