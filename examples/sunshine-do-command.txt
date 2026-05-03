@@ -1,0 +1,4 @@
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File "C:\SunshineSecondMonitor\SunshineSecondMonitor.ps1" -Mode start
+
+Custom BaseDir example:
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File "D:\Tools\SunshineSecondMonitor\SunshineSecondMonitor.ps1" -Mode start -BaseDir "D:\Tools\SunshineSecondMonitor"

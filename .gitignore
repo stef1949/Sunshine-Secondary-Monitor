@@ -1,0 +1,20 @@
+# Runtime binaries and installers should not be committed.
+*.exe
+*.dll
+*.msi
+*.zip
+*.7z
+
+# Generated monitor profiles and logs.
+profiles/
+*.log
+*.xml
+
+# PowerShell/editor noise.
+*.ps1xml
+.vscode/
+.idea/
+
+# OS files.
+Thumbs.db
+Desktop.ini
