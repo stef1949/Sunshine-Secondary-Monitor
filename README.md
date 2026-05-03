@@ -185,15 +185,6 @@ Common issues are covered in [docs/troubleshooting.md](docs/troubleshooting.md),
 - Sleep/wake and dock/USB-C changes can cause Windows to reorder displays.
 - HDR, high refresh rates, and unusual laptop resolutions may require virtual display driver tuning.
 
-## Screenshots
-
-Screenshots are not required for setup. Suggested placeholders for future documentation:
-
-- Windows display arrangement with the virtual display enabled.
-- Sunshine Display ID setting.
-- Sunshine app do/undo command fields.
-- Moonlight fullscreen session on the laptop.
-
 ## License
 
 MIT. See [LICENSE](LICENSE).
