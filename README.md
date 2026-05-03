@@ -1,4 +1,6 @@
-# Sunshine Second Monitor
+# Sunshine Second Monitor 
+
+[![PowerShell Lint](https://github.com/stef1949/Sunshine-Secondary-Monitor/actions/workflows/powershell-lint.yml/badge.svg)](https://github.com/stef1949/Sunshine-Secondary-Monitor/actions/workflows/powershell-lint.yml)
 
 Use a laptop running Moonlight as a streamed secondary monitor for a Windows Sunshine host.
 
