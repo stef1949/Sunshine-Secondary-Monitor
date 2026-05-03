@@ -39,10 +39,12 @@ jobs:
         shell: pwsh
         run: |
           $results = @()
-          $results += Invoke-ScriptAnalyzer -Path scripts -Recurse -Severity Warning, Error
-          $results += Invoke-ScriptAnalyzer -Path examples -Recurse -Severity Warning, Error
+          $results += Invoke-ScriptAnalyzer -Path scripts   -Recurse -Severity Warning,Error
+          $results += Invoke-ScriptAnalyzer -Path examples  -Recurse -Severity Warning,Error
 
           if ($results.Count -gt 0) {
-            $results | Format-Table -AutoSize
+            $results |
+              Select-Object RuleName, Severity, ScriptName, Line, Column, Message |
+              Format-Table -AutoSize
             throw "PSScriptAnalyzer reported $($results.Count) issue(s)."
           }
