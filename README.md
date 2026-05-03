@@ -194,20 +194,6 @@ Screenshots are not required for setup. Suggested placeholders for future docume
 - Sunshine app do/undo command fields.
 - Moonlight fullscreen session on the laptop.
 
-## Tested With
-
-Fill this in for your environment:
-
-| Component | Version / Notes |
-| --- | --- |
-| Windows |  |
-| Sunshine |  |
-| Moonlight |  |
-| Virtual Display Driver |  |
-| Monitor Profile Switcher |  |
-| GPU driver |  |
-| Laptop resolution / refresh rate |  |
-
 ## License
 
 MIT. See [LICENSE](LICENSE).
